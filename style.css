@@ -7,20 +7,23 @@
 }
 
 #display-screen {
-    width: 95%;
+    width: 65%;
     height: 40px;
     margin-top: 30px;
-    margin: auto;
     border: 2px solid black;
     border-radius: 10px;
+    text-align: right;
+    font-size: 30px;
+
     
 }
 
 #clear-button {
     height: 34px;
-    width: 40px;
+    width: 10%;
     border-radius: 8px;
     border: 1px solid black;
+    float: left;
     margin-top: 3px;
     margin-left: 3px;
 }
@@ -28,7 +31,7 @@
 #button-container {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 25px;
+    margin-top: 30px;
     justify-content: center;
     align-items: center;
     height: 75%;
