@@ -1,4 +1,41 @@
-const displayScreen = document.getElementById('display-screen');
+let firstOperand = '';
+let secondOperand = '';
+let operator = ''
+
+document.querySelectorAll('.numbers')
+.forEach(numberButton => {
+    numberButton.addEventListener('click', () => {
+        const number = numberButton.textContent;
+        //console.log(numberButton.textContent);
+
+        if (!operator) {
+            firstOperand += number;
+        }  
+
+        if (firstOperand && operator) {
+            secondOperand += number;
+        }
+        
+        console.log('firstOperand', firstOperand);
+        console.log('secondOperand', secondOperand);
+    })
+})
+
+document.querySelectorAll('.operators')
+.forEach(operatorButtons => {
+    operatorButtons.addEventListener('click', (e) => {
+        const selectedOperator = e.target.textContent;
+
+        if (firstOperand) {
+            operator = selectedOperator;
+        }
+        console.log(operator);
+    })
+})
+
+
+
+/*const displayScreen = document.getElementById('display-screen');
 const button1 = document.getElementById('button-1');
 const button2 = document.getElementById('button-2');
 const button3 = document.getElementById('button-3');
@@ -49,3 +86,7 @@ button8.addEventListener('click', (e) => {
 button9.addEventListener('click', (e) => {
     displayScreen.textContent = "9";
 })
+
+*/
+
+

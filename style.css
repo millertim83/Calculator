@@ -7,7 +7,7 @@
 }
 
 #display-screen {
-    width: 65%;
+    width: 85%;
     height: 40px;
     margin-top: 30px;
     border: 2px solid black;
@@ -15,8 +15,8 @@
     text-align: right;
     font-size: 30px;
 
-    
 }
+
 
 #clear-button {
     height: 34px;
@@ -37,7 +37,7 @@
     height: 75%;
 }
 
-.button {
+.button, .numbers, .operators {
     height: 22% ;
     width: 22% ;
     margin: auto;
