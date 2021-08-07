@@ -1,12 +1,19 @@
 let firstOperand = '';
 let secondOperand = '';
 let operator = ''
+const clearButton = document.getElementById('clear-button');
+const displayScreen = document.getElementById('display-screen');
+
+clearButton.addEventListener('click', (e) => {
+    displayScreen.textContent = '';
+    firstOperand = '';
+})
 
 document.querySelectorAll('.numbers')
 .forEach(numberButton => {
     numberButton.addEventListener('click', () => {
         const number = numberButton.textContent;
-        //console.log(numberButton.textContent);
+        
 
         if (!operator) {
             firstOperand += number;
@@ -14,10 +21,11 @@ document.querySelectorAll('.numbers')
 
         if (firstOperand && operator) {
             secondOperand += number;
+            console.log('secondOperand', secondOperand);
         }
         
         console.log('firstOperand', firstOperand);
-        console.log('secondOperand', secondOperand);
+        
     })
 })
 
@@ -30,63 +38,55 @@ document.querySelectorAll('.operators')
             operator = selectedOperator;
         }
         console.log(operator);
+        
     })
 })
 
-
-
-/*const displayScreen = document.getElementById('display-screen');
-const button1 = document.getElementById('button-1');
-const button2 = document.getElementById('button-2');
-const button3 = document.getElementById('button-3');
-const button4 = document.getElementById('button-4');
-const button5 = document.getElementById('button-5');
-const button6 = document.getElementById('button-6');
-const button7 = document.getElementById('button-7');
-const button8 = document.getElementById('button-8');
-const button9 = document.getElementById('button-9');
-const clearButton = document.getElementById('clear-button');
-
-clearButton.addEventListener('click', (e) => {
-    displayScreen.textContent = "0";
+document.getElementById('equal-button')
+.addEventListener('click', (e) => {
+    if (firstOperand && operator && secondOperand) {
+        const result = calculateResult();
+        firstOperand = result;
+        operator = '';
+        secondOperand = '';
+        displayScreen.textContent = result;
+    }
 })
 
-button1.addEventListener('click', (e) => {
-    displayScreen.textContent = "1";
-})
+function calculateResult () {
+    switch (operator) {
+        case '+': 
+            return add();
+        case '-':
+            return subtract();
+        case '/':
+            return divide();
+        case '*':
+            return multiply();
+    }
+}
 
-button2.addEventListener('click', (e) => {
-    displayScreen.textContent = "2";
-})
+function add() {
+    return `${Number(firstOperand) + Number(secondOperand)}`;
+}
 
-button3.addEventListener('click', (e) => {
-    displayScreen.textContent = "3";
-})
+function subtract() {
+    return `${Number(firstOperand) - Number(secondOperand)}`;
+}
 
-button4.addEventListener('click', (e) => {
-    displayScreen.textContent = "4";
-})
+function divide() {
+    return `${Number(firstOperand) / Number(secondOperand)}`;
+}
 
-button5.addEventListener('click', (e) => {
-    displayScreen.textContent = "5";
-})
+function multiply() {
+    return `${Number(firstOperand) * Number(secondOperand)}`;
+}
 
-button6.addEventListener('click', (e) => {
-    displayScreen.textContent = "6";
-})
+//const displayScreen = document.getElementById('display-screen');
 
-button7.addEventListener('click', (e) => {
-    displayScreen.textContent = "7";
-})
 
-button8.addEventListener('click', (e) => {
-    displayScreen.textContent = "8";
-})
 
-button9.addEventListener('click', (e) => {
-    displayScreen.textContent = "9";
-})
 
-*/
+
 
 
