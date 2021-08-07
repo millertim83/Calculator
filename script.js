@@ -4,8 +4,9 @@ let operator = ''
 const clearButton = document.getElementById('clear-button');
 const displayScreen = document.getElementById('display-screen');
 
+
 clearButton.addEventListener('click', (e) => {
-    displayScreen.textContent = '';
+    displayScreen.textContent = '0';
     firstOperand = '';
 })
 
@@ -17,17 +18,27 @@ document.querySelectorAll('.numbers')
 
         if (!operator) {
             firstOperand += number;
+            displayScreen.textContent = firstOperand;
         }  
 
         if (firstOperand && operator) {
             secondOperand += number;
-            console.log('secondOperand', secondOperand);
+            displayScreen.textContent = secondOperand;
+            //console.log('secondOperand', secondOperand);
         }
         
-        console.log('firstOperand', firstOperand);
+        //console.log('firstOperand', firstOperand);
         
     })
 })
+
+/* Event Listener for decimal button
+document.querySelector('#decimal-button')
+.addEventListener('click', (e) => {
+    if(firstOperand) {
+        
+})
+*/
 
 document.querySelectorAll('.operators')
 .forEach(operatorButtons => {
