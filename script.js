@@ -10,6 +10,8 @@ clearButton.addEventListener('click', (e) => {
     firstOperand = '';
 })
 
+
+
 document.querySelectorAll('.numbers')
 .forEach(numberButton => {
     numberButton.addEventListener('click', () => {
@@ -32,13 +34,21 @@ document.querySelectorAll('.numbers')
     })
 })
 
-/* Event Listener for decimal button
-document.querySelector('#decimal-button')
+//Event Listener for decimal button
+const decimal = document.getElementById('decimal-button')
 .addEventListener('click', (e) => {
     if(firstOperand) {
-        
-})
-*/
+        firstOperand = firstOperand + '.';
+        displayScreen.textContent = firstOperand; 
+    } 
+
+    if(secondOperand && !decimal) {
+        secondOperand = secondOperand + '.';
+        displayScreen.textContent = secondOperand;
+    }  
+
+});
+
 
 document.querySelectorAll('.operators')
 .forEach(operatorButtons => {
@@ -72,28 +82,31 @@ function calculateResult () {
             return subtract();
         case '/':
             return divide();
-        case '*':
+        case 'X':
             return multiply();
     }
 }
 
 function add() {
-    return `${Number(firstOperand) + Number(secondOperand)}`;
+    return `${parseFloat(firstOperand) + parseFloat(secondOperand)}`;
 }
 
 function subtract() {
-    return `${Number(firstOperand) - Number(secondOperand)}`;
+    return `${parseFloat(firstOperand) - parseFloat(secondOperand)}`;
 }
 
 function divide() {
-    return `${Number(firstOperand) / Number(secondOperand)}`;
+    return `${parseFloat(firstOperand) / parseFloat(secondOperand)}`;
 }
 
 function multiply() {
-    return `${Number(firstOperand) * Number(secondOperand)}`;
+    return `${parseFloat(firstOperand) * parseFloat(secondOperand)}`;
 }
 
-//const displayScreen = document.getElementById('display-screen');
+
+
+
+
 
 
 
