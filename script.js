@@ -17,7 +17,6 @@ document.querySelectorAll('.numbers')
     numberButton.addEventListener('click', () => {
         const number = numberButton.textContent;
         
-
         if (!operator) {
             firstOperand += number;
             displayScreen.textContent = firstOperand;
@@ -26,21 +25,27 @@ document.querySelectorAll('.numbers')
         if (firstOperand && operator) {
             secondOperand += number;
             displayScreen.textContent = secondOperand;
-            //console.log('secondOperand', secondOperand);
         }
-        
-        //console.log('firstOperand', firstOperand);
-        
-    })
-})
+    });
+});
 
 //Event Listener for decimal button
 const decimal = document.getElementById('decimal-button')
 .addEventListener('click', (e) => {
+    if (!firstOperand) {
+        firstOperand = '0' + firstOperand
+        displayScreen.textContent = firstOperand;
+    }
+    
     if(firstOperand) {
         firstOperand = firstOperand + '.';
         displayScreen.textContent = firstOperand; 
     } 
+
+    /*if (!secondOperand) {
+        secondOperand = '0' + secondOperand
+        displayScreen.textContent = secondOperand;
+    }*/
 
     if(secondOperand && !decimal) {
         secondOperand = secondOperand + '.';
@@ -48,7 +53,6 @@ const decimal = document.getElementById('decimal-button')
     }  
 
 });
-
 
 document.querySelectorAll('.operators')
 .forEach(operatorButtons => {
