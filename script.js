@@ -8,6 +8,8 @@ const displayScreen = document.getElementById('display-screen');
 clearButton.addEventListener('click', (e) => {
     displayScreen.textContent = '0';
     firstOperand = '';
+    operator = '';
+    secondOperand = ''
 })
 
 
@@ -33,17 +35,28 @@ document.querySelectorAll('.numbers')
 const decimal = document.getElementById('decimal-button')
 .addEventListener('click', (e) => {
     if (!firstOperand) {
-        firstOperand = '0' + firstOperand
+        firstOperand = '0' + firstOperand;
         displayScreen.textContent = firstOperand;
     }
     
     if(firstOperand) {
         firstOperand = firstOperand + '.';
         displayScreen.textContent = firstOperand; 
+        
     } 
 
-    /*if (!secondOperand) {
-        secondOperand = '0' + secondOperand
+    /*if (firstOperand.indexOf('.') != -1) {
+        //decimal.disabled = true;
+    }
+    */
+
+    if (firstOperand && operator && !secondOperand) {
+        secondOperand = '0' + secondOperand;
+        displayScreen.textContent = secondOperand;
+    }
+
+    /*if secondOperand.indexOf('.') == -1 {
+        secondOperand = secondOperand;
         displayScreen.textContent = secondOperand;
     }*/
 
@@ -51,6 +64,8 @@ const decimal = document.getElementById('decimal-button')
         secondOperand = secondOperand + '.';
         displayScreen.textContent = secondOperand;
     }  
+
+
 
 });
 
@@ -63,6 +78,16 @@ document.querySelectorAll('.operators')
             operator = selectedOperator;
         }
         console.log(operator);
+
+        //logic here for continuous functionality
+        if (firstOperand && operator && secondOperand) {
+            const result = calculateResult();
+            displayScreen.textContent = result;
+            firstOperand = result;
+            //operator = selectedOperator;
+            secondOperand = '';
+            
+        }
         
     })
 })
@@ -92,21 +117,28 @@ function calculateResult () {
 }
 
 function add() {
-    return `${parseFloat(firstOperand) + parseFloat(secondOperand)}`;
+    return `${trimDecimal(parseFloat(firstOperand) + parseFloat(secondOperand))}`;
 }
 
 function subtract() {
-    return `${parseFloat(firstOperand) - parseFloat(secondOperand)}`;
+    return `${trimDecimal(parseFloat(firstOperand) - parseFloat(secondOperand))}`;
 }
 
 function divide() {
-    return `${parseFloat(firstOperand) / parseFloat(secondOperand)}`;
+    return `${trimDecimal(parseFloat(firstOperand) / parseFloat(secondOperand))}`;
 }
 
 function multiply() {
-    return `${parseFloat(firstOperand) * parseFloat(secondOperand)}`;
+    return `${trimDecimal(parseFloat(firstOperand) * parseFloat(secondOperand))}`;
 }
-
+ 
+function trimDecimal(calculation) {
+    if (Number.isInteger(calculation)) {
+        return calculation;
+    } else {
+        return calculation.toFixed(3);
+    }
+}
 
 
 
