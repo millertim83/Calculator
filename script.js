@@ -74,20 +74,23 @@ document.querySelectorAll('.operators')
     operatorButtons.addEventListener('click', (e) => {
         const selectedOperator = e.target.textContent;
 
-        if (firstOperand) {
-            operator = selectedOperator;
-        }
-        console.log(operator);
-
-        //logic here for continuous functionality
-        if (firstOperand && operator && secondOperand) {
+          //logic here for continuous functionality
+          if (firstOperand && operator && secondOperand) {
             const result = calculateResult();
             displayScreen.textContent = result;
             firstOperand = result;
             //operator = selectedOperator;
             secondOperand = '';
+            //selectedOperator = '';
             
         }
+
+        if (firstOperand) {
+            operator = selectedOperator;
+        }
+        console.log(operator);
+
+      
         
     })
 })
