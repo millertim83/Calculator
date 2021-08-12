@@ -4,15 +4,12 @@ let operator = ''
 const clearButton = document.getElementById('clear-button');
 const displayScreen = document.getElementById('display-screen');
 
-
 clearButton.addEventListener('click', (e) => {
     displayScreen.textContent = '0';
     firstOperand = '';
     operator = '';
     secondOperand = ''
 })
-
-
 
 document.querySelectorAll('.numbers')
 .forEach(numberButton => {
@@ -31,67 +28,49 @@ document.querySelectorAll('.numbers')
     });
 });
 
-//Event Listener for decimal button
 const decimal = document.getElementById('decimal-button')
 .addEventListener('click', (e) => {
+    
     if (!firstOperand) {
-        firstOperand = '0' + firstOperand;
+        firstOperand = handleDecimal(firstOperand);
         displayScreen.textContent = firstOperand;
+        console.log(firstOperand);
+    } else if (firstOperand && operator) {
+        secondOperand = handleDecimal(secondOperand);
+        displayScreen.textContent = secondOperand;
+        console.log(secondOperand);
     }
     
-    if(firstOperand) {
-        firstOperand = firstOperand + '.';
+    if (firstOperand) {
+        firstOperand = handleDecimal(firstOperand);
         displayScreen.textContent = firstOperand; 
-        
     } 
-
-    /*if (firstOperand.indexOf('.') != -1) {
-        //decimal.disabled = true;
-    }
-    */
-
-    if (firstOperand && operator && !secondOperand) {
-        secondOperand = '0' + secondOperand;
-        displayScreen.textContent = secondOperand;
-    }
-
-    /*if secondOperand.indexOf('.') == -1 {
-        secondOperand = secondOperand;
-        displayScreen.textContent = secondOperand;
-    }*/
-
-    if(secondOperand && !decimal) {
-        secondOperand = secondOperand + '.';
-        displayScreen.textContent = secondOperand;
-    }  
-
-
-
 });
+
+function handleDecimal(operand) {
+    const operandArray = operand.split('');
+    if (operandArray.indexOf('.') === -1) {
+        operandArray.push('.');
+    }
+    return operandArray.join('');
+}
 
 document.querySelectorAll('.operators')
 .forEach(operatorButtons => {
     operatorButtons.addEventListener('click', (e) => {
         const selectedOperator = e.target.textContent;
 
-          //logic here for continuous functionality
-          if (firstOperand && operator && secondOperand) {
+        if (firstOperand && operator && secondOperand) {
             const result = calculateResult();
             displayScreen.textContent = result;
             firstOperand = result;
-            //operator = selectedOperator;
             secondOperand = '';
-            //selectedOperator = '';
-            
         }
 
         if (firstOperand) {
             operator = selectedOperator;
         }
         console.log(operator);
-
-      
-        
     })
 })
 
