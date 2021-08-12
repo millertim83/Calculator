@@ -30,7 +30,11 @@ document.querySelectorAll('.numbers')
 
 const decimal = document.getElementById('decimal-button')
 .addEventListener('click', (e) => {
-    
+    if (firstOperand) {
+        firstOperand = handleDecimal(firstOperand);
+        displayScreen.textContent = firstOperand; 
+    } 
+
     if (!firstOperand) {
         firstOperand = handleDecimal(firstOperand);
         displayScreen.textContent = firstOperand;
@@ -41,10 +45,8 @@ const decimal = document.getElementById('decimal-button')
         console.log(secondOperand);
     }
     
-    if (firstOperand) {
-        firstOperand = handleDecimal(firstOperand);
-        displayScreen.textContent = firstOperand; 
-    } 
+    
+    
 });
 
 function handleDecimal(operand) {
